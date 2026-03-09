@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VeloWorld – Product Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    background: #f4f7fb;
+    font-family: "Poppins", sans-serif;
+}
+
+/* HEADER */
+header {
+    width: 100%;
+    background: #fff;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    
+}
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #0066cc;
+}
+nav {
+    transform: translateX(-45px);
+    transition: 0.2s;
+}
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #333;
+}
+nav a:hover { color: #00b894; }
+
+/* MAIN WRAPPER */
+.wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
+    padding: 0 20px;
+}
+.image-box {
+    position: relative;
+    width: 100%;
+    max-width: 650px;   /* genişliyi məhdudlaşdırır */
+    margin: 0 auto;     /* ortalanır */
+}
+
+.main-img {
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.thumb-row {
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.thumb-row img {
+    width: 90px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: .2s;
+}
+.thumb-row img:hover { opacity: 1; }
+
+/* NAV BUTTONS */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-215%);
+    font-size: 32px;
+    color: white;
+    background: rgba(0,0,0,0.45);
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+#prevBtn { left: 20px; }
+#nextBtn { right: 20px; }
+
+/* ZOOM – SAĞ YUXARI KÜNC */
+.zoom-btn {
+    position: absolute;
+    top: 15px;     /* <-- buraya qaldırdıq */
+    right: 15px;   /* sağ künc */
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* LIGHTBOX */
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left:0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* RIGHT – DETAILS */
+.details {
+    width: 45%;
+}
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #003366;
+}
+.price {
+    font-size: 26px;
+    color: #00b894;
+    margin: 10px 0 20px;
+}
+
+.desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* SPECS BOX */
+.spec-box {
+    margin-top: 25px;
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+.spec-box div {
+    margin: 6px 0;
+}
+
+/* SELLER BOX */
+.seller-box {
+    margin-top: 25px;
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    font-size: 15px;
+}
+.seller-box b { color: #003366; }
+html, body {
+    overflow-x: hidden !important;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">VeloWorld</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="about.html">About</a>
+        <a href="history.html">History</a>
+        <a href="contact.html">Contact</a>
+        <a href="add-product.html" style="color:#0066cc;">Sell Your Bike</a>
+    </nav>
+</header>
+
+<div class="wrapper">
+
+    <!-- LEFT: IMAGES -->
+    <div class="image-box">
+        <img id="mainImage" class="main-img" src="">
+        <!-- ZOOM İKONU SAĞ YUXARI -->
+        <div class="zoom-btn" id="zoomBtn"><i class="fa-solid fa-magnifying-glass"></i></div>
+
+        <div id="prevBtn" class="nav-btn"><i class="fa-solid fa-chevron-left"></i></div>
+        <div id="nextBtn" class="nav-btn"><i class="fa-solid fa-chevron-right"></i></div>
+
+        <div class="thumb-row" id="thumbRow"></div>
+    </div>
+
+    <!-- RIGHT: DETAILS -->
+    <div class="details">
+        <div id="title" class="title"></div>
+        <div id="price" class="price"></div>
+        <div id="desc" class="desc"></div>
+
+        <h3 style="margin-top:20px; color:#003366;">Specifications</h3>
+        <div class="spec-box" id="specsBox"></div>
+
+        <h3 style="margin-top:25px; color:#003366;">Seller Information</h3>
+        <div class="seller-box">
+            <div><b>Posted by:</b> <span id="sellerName"></span></div>
+            <div><b>Phone:</b> <span id="sellerPhone"></span></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+    <img id="lightboxImage" src="">
+</div>
+
+<!-- MƏHSUL MƏLUMATLARI -->
+<script src="js/product-data.js"></script>
+<script src="js/shop.js"></script>
+
+<script>
+// ================= READ ID FROM URL =================
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+// ================= FIND PRODUCT ======================
+const bike = allProducts.find(p => p.id === id);
+if (!bike) {
+    document.body.innerHTML = "<h2 style='padding:40px;text-align:center;'>Product not found</h2>";
+}
+
+// ================= SET BASIC INFO ====================
+document.getElementById("title").textContent = bike.name;
+document.getElementById("price").textContent = bike.price;
+document.getElementById("desc").textContent = bike.desc;
+
+// ================= SPECS =============================
+const specsBox = document.getElementById("specsBox");
+Object.entries(bike.specs || {}).forEach(([key, value]) => {
+    specsBox.innerHTML += `<div><b>${key}:</b> ${value}</div>`;
+});
+
+// ================= SELLER INFO ======================
+document.getElementById("sellerName").textContent = bike.postedBy || "Unknown";
+document.getElementById("sellerPhone").textContent = bike.phone || "Not provided";
+
+// ================= IMAGES ===========================
+let images = bike.userType === "user"
+    ? bike.images
+    : bike.images.map(img => "images/" + img);
+
+let currentIndex = 0;
+
+const mainImage = document.getElementById("mainImage");
+const thumbRow = document.getElementById("thumbRow");
+
+function updateImage() {
+    mainImage.src = images[currentIndex];
+}
+updateImage();
+
+// thumbnails
+images.forEach((src, i) => {
+    const t = document.createElement("img");
+    t.src = src;
+    t.onclick = () => { currentIndex = i; updateImage(); };
+    thumbRow.appendChild(t);
+});
+
+// next / prev
+document.getElementById("nextBtn").onclick = () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+};
+document.getElementById("prevBtn").onclick = () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+};
+
+// =============== ZOOM ===============
+const zoomBtn = document.getElementById("zoomBtn");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+
+zoomBtn.onclick = () => {
+    lightboxImage.src = images[currentIndex];
+    lightbox.style.display = "flex";
+};
+lightbox.onclick = () => {
+    lightbox.style.display = "none";
+};
+</script>
+
+</body>
+</html>

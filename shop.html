@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VeloWorld – Bicycle Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+/* ====== GLOBAL ====== */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden !important; /* HORIZONTAL SCROLL TAM BLOKLANDI */
+    font-family: "Roboto", sans-serif;
+    background: #f4f7fb;
+}
+
+/* ====== HEADER ====== */
+header {
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #0066cc;
+    font-family: "Poppins";
+}
+
+/* NAVIGATION FIX — overflow-un qarşısını alır */
+nav {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+nav a {
+    font-family: "Poppins";
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .2s;
+    white-space: nowrap; /* UZANMAĞIN QARŞISINI ALIR */
+}
+
+nav a:hover,
+nav a.active {
+    color: #00b894;
+}
+
+/* ====== PAGE TITLE ====== */
+.page-title {
+    text-align: center;
+    font-family: "Poppins";
+    font-size: 40px;
+    margin-top: 40px;
+    color: #003366;
+}
+
+/* ====== SEARCH ====== */
+.search-box { text-align: center; margin: 25px 0; }
+
+.search-box input {
+    width: 350px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    font-size: 16px;
+}
+
+/* ====== FILTER BUTTONS ====== */
+.filter-bar {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.filter-bar button {
+    padding: 10px 22px;
+    border-radius: 30px;
+    background: #ebeff3;
+    border: none;
+    cursor: pointer;
+    font-family: "Poppins";
+    transition: .2s;
+}
+
+.filter-bar button.active,
+.filter-bar button:hover {
+    background: #00b894;
+    color: #fff;
+}
+
+/* ====== PRODUCT GRID ====== */
+#product-list {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    text-decoration: none;
+    color: black;
+    overflow: hidden;
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body h3 {
+    font-family: "Poppins";
+    margin: 6px 0;
+}
+
+.price {
+    color: #00b894;
+    font-weight: 700;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.desc {
+    font-size: 14px;
+    color: #666;
+}
+nav {
+    transform: translateX(-45px);
+}
+.bike-card{
+    width: 260px;
+    background: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin: 15px;
+    display: inline-block;
+}
+.bike-img{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.price{
+    color: #FF6600;
+    font-weight: 700;
+}
+.city{
+    font-size: 14px;
+    color: gray;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">VeloWorld</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="about.html">About</a>
+        <a href="history.html">History</a>
+        <a href="contact.html">Contact</a>
+        <a href="add-product.html" style="color:#0066cc;">Sell Your Bike</a>
+    </nav>
+</header>
+
+<h1 class="page-title">Bicycle Store</h1>
+
+<!-- SEARCH -->
+<div class="search-box">
+    <input type="text" id="searchBox" placeholder="Search bicycles..." onkeyup="searchProducts()">
+</div>
+
+<!-- FILTER BUTTONS -->
+<div class="filter-bar">
+    <button onclick="filterProducts('all')" class="active">All</button>
+    <button onclick="filterProducts('mountain')">Mountain</button>
+    <button onclick="filterProducts('road')">Road</button>
+    <button onclick="filterProducts('hybrid')">Hybrid</button>
+    <button onclick="filterProducts('city')">City</button>
+    <button onclick="filterProducts('electric')">Electric</button>
+    <button onclick="filterProducts('kids')">Kids</button>
+    <button onclick="filterProducts('retro')">Retro</button>
+    <button onclick="filterProducts('bmx')">BMX</button>
+</div>
+
+<!-- PRODUCT LIST -->
+<div id="product-list"></div>
+
+<!-- JS FILES -->
+<script src="js/product-data.js"></script>
+<script src="js/shop.js"></script>
+<script>
+function loadAds() {
+    const container = document.getElementById("shopContainer");
+    let ads = JSON.parse(localStorage.getItem("veloworld_ads") || "[]");
+
+    if (ads.length === 0) {
+        container.innerHTML = "<p>No bikes listed yet.</p>";
+        return;
+    }
+
+    ads.forEach(ad => {
+        const card = document.createElement("div");
+        card.className = "bike-card";
+
+        card.innerHTML = `
+            <img src="${ad.photos[0]}" class="bike-img">
+            <h3>${ad.brand} ${ad.model}</h3>
+            <p>${ad.year} • ${ad.condition}</p>
+            <p class="price">${ad.price} ${ad.currency}</p>
+            <p class="city">${ad.city}</p>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+loadAds();
+</script>
+
+</body>
+</html>
