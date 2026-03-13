@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>History of Bicycles – VeloWorld</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+/* ============================
+   GLOBAL STYLES
+============================ */
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    background: #f5f7fb;
+    color: #333;
+}
+html, body { overflow-x: hidden; }
+
+/* HEADER (same style as other pages) */
+header {
+    width: 100%;
+    background: #ffffff;
+    padding: 18px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    font-family: "Poppins";
+    color: #0066cc;
+}
+nav {
+    transform: translateX(-70px);
+}
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: "Poppins";
+    color: #333;
+    white-space: nowrap;
+    transition: .2s;
+}
+nav a:hover, nav a.active {
+    color: #00b894;
+}
+
+/* PAGE WRAPPER */
+.page-wrapper {
+    max-width: 1050px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ============================
+   TIMELINE STYLING
+============================ */
+.timeline {
+    position: relative;
+    margin: 50px 0;
+    padding-left: 30px;
+    border-left: 4px solid #0066cc;
+}
+
+.timeline-item {
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.timeline-marker {
+    width: 22px;
+    height: 22px;
+    background: #00b894;
+    border-radius: 50%;
+    border: 4px solid white;
+    position: absolute;
+    left: -42px;
+    top: 3px;
+    box-shadow: 0 0 0 4px #0066cc;
+}
+
+.timeline-content {
+    background: #ffffff;
+    padding: 20px 22px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+.timeline-content h3 {
+    font-family: "Poppins";
+    font-size: 22px;
+    margin: 0 0 10px;
+    color: #003366;
+}
+
+.timeline-content p {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* IMAGE PLACEHOLDER */
+.timeline-img {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #cce7ff, #b7f7e6);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+    color: #003366;
+    font-weight: 600;
+}
+
+/* SOURCES */
+.sources {
+    margin-top: 60px;
+}
+.sources h3 {
+    font-family: "Poppins";
+    color: #003366;
+}
+.sources ul {
+    padding-left: 20px;
+}
+.sources a {
+    color: #0066cc;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding-left: 20px;
+        border-left-width: 3px;
+    }
+    .timeline-marker {
+        left: -34px;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">VeloWorld</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="history.html" class="active">History</a>
+        <a href="contact.html">Contact</a>
+        <a href="add-product.html" style="color:#0066cc;">Sell Your Bike</a>
+    </nav>
+</header>
+
+<div class="page-wrapper">
+
+    <h1 style="text-align:center; font-family:Poppins; color:#003366;">
+        The Evolution of Bicycles 🚲
+    </h1>
+
+    <p style="text-align:center; max-width:720px; margin:10px auto; color:#555;">
+        A visual journey through the key milestones that shaped the bicycles we ride today.
+    </p>
+
+    <!-- ============================
+         TIMELINE
+    ============================= -->
+
+    <div class="timeline">
+
+        <!-- 1817 -->
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="timeline-img">
+                    <img src="images/draisine.jpg"     
+                     style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                </div>
+                <h3>1817 – Karl von Drais invents the “Laufmaschine”</h3>
+                <p>
+                    Often considered the first bicycle, this wooden two-wheeled invention 
+                    introduced the concept of balancing on two wheels without pedals.
+                </p>
+            </div>
+        </div>
+
+        <!-- Penny Farthing -->
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="timeline-img">
+                     <img src="images/pennyfarthing.jpg"
+                          style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                </div>
+                <h3>1870s – The Penny-Farthing Era</h3>
+                <p>
+                    Known for its enormous front wheel, the Penny-Farthing became widely popular. 
+                    It represented speed and innovation, though riding it was risky!
+                </p>
+            </div>
+        </div>
+
+        <!-- Safety Bicycle -->
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="timeline-img">
+                      <img src="images/safetybike.jpg" 
+                           style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+
+                </div>
+                <h3>1885 – Arrival of the “Safety Bicycle”</h3>
+                <p>
+                    With equal-size wheels, a chain-driven rear wheel, and improved stability, 
+                    this design became the foundation of the modern bicycle.
+                </p>
+            </div>
+        </div>
+
+        <!-- Pneumatic Tires -->
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="timeline-img">
+                     <img src="images/pneumatic.jpg" 
+                          style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                </div>
+                <h3>1890s – Invention of Pneumatic Tires</h3>
+                <p>
+                    Air-filled tires revolutionized bicycle comfort, making rides smoother 
+                    and dramatically improving performance.
+                </p>
+            </div>
+        </div>
+
+        <!-- Modern Materials -->
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="timeline-img">
+                     <img src="images/carbonbike.jpg" 
+                          style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                </div>
+                <h3>1970–Present – Lightweight Materials Transform Cycling</h3>
+                <p>
+                    Aluminum, carbon fiber, and titanium frames reduced weight and improved efficiency, 
+                    paving the way for high-performance racing and mountain bikes.
+                </p>
+            </div>
+        </div>
+
+        <!-- Electric Bikes -->
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="timeline-img">
+                    <img src="images/ebike.jpg"
+                         style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                </div>
+                <h3>2000s–Today – Electric Bikes & Eco Mobility</h3>
+                <p>
+                    E-bikes introduced pedal assistance, making commuting easier, promoting sustainability, 
+                    and attracting millions of new riders worldwide.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ============================
+         USEFUL SOURCES
+    ============================= -->
+    <div class="sources">
+        <h3>Useful Sources</h3>
+        <ul>
+            <li><a href="https://en.wikipedia.org/wiki/Bicycle" target="_blank">Wikipedia – Bicycle</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/History_of_the_bicycle" target="_blank">History of Bicycles</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Cycling" target="_blank">Cycling Overview</a></li>
+        </ul>
+    </div>
+
+    <footer>
+        © 2025 VeloWorld. All rights reserved.
+    </footer>
+
+</div>
+
+</body>
+</html>

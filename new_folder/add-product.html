@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sell Your Bike – VeloWorld</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* =============== GLOBAL =============== */
+:root{
+    --blue:#003366;
+    --orange:#FF6600;
+    --light-bg:#f5f7fb;
+    --border:#d5dce6;
+}
+
+*{box-sizing:border-box;}
+
+html,body{
+    margin:0;
+    font-family: 'Poppins',sans-serif;
+    background:var(--light-bg);
+    overflow-x:hidden;
+}
+
+/* ===== NAVBAR ===== */
+header{
+    width:100%;
+    background:#fff;
+    padding:18px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 3px 15px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+.logo{
+    font-size:26px;
+    font-weight:700;
+    color:#0066cc;
+}
+nav{
+    padding-left:40px;
+}
+nav a{
+    margin-left:25px;
+    font-weight:600;
+    color:#333;
+    text-decoration:none;
+    white-space:nowrap;
+}
+nav a:hover,
+nav a.active{
+    color:#00b894;
+}
+
+/* =============== FORM SHELL =============== */
+.sell-wrapper{
+    max-width:900px;
+    margin:40px auto 60px;
+    padding:20px;
+}
+
+.form-card{
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.08);
+    padding:30px 30px 25px;
+}
+
+/* =============== STEPPER =============== */
+.stepper{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+    position:relative;
+}
+.stepper::before{
+    content:"";
+    position:absolute;
+    top:22px;
+    left:10%;
+    right:10%;
+    height:3px;
+    background:#e2e6f0;
+    z-index:0;
+}
+.step{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    flex:1;
+}
+.step:not(:last-child){
+    margin-right:10px;
+}
+.step-number{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    margin:0 auto 6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:600;
+    border:2px solid var(--border);
+    background:#fff;
+    color:var(--blue);
+}
+.step-label{
+    font-size:13px;
+    color:#8a8fa0;
+}
+.step.active .step-number{
+    border-color:var(--blue);
+    background:var(--blue);
+    color:#fff;
+}
+.step.completed .step-number{
+    border-color:var(--orange);
+    background:var(--orange);
+    color:#fff;
+}
+.step.active .step-label{
+    color:var(--blue);
+}
+.step.completed .step-label{
+    color:var(--orange);
+}
+
+/* =============== FORM STEPS =============== */
+.form-step{
+    display:none;
+}
+.form-step.active{
+    display:block;
+}
+
+/* FIELD STYLES */
+.field-group{
+    margin-bottom:18px;
+}
+.field-group label{
+    display:block;
+    font-size:14px;
+    font-weight:500;
+    margin-bottom:6px;
+    color:#222;
+}
+.field-row{
+    display:flex;
+    gap:16px;
+}
+@media(max-width:700px){
+    .field-row{
+        flex-direction:column;
+    }
+}
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+select,
+textarea{
+    width:100%;
+    padding:11px 12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    outline:none;
+    transition:.15s;
+    background:#fafbff;
+}
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--blue);
+    background:#fff;
+}
+
+/* SIMPLE CHECKBOX LINE */
+.inline-checkbox{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:6px;
+    font-size:14px;
+}
+.inline-checkbox input{
+    width:16px;
+    height:16px;
+}
+
+/* =============== PHOTO UPLOAD =============== */
+.upload-box{
+    border:2px dashed var(--border);
+    border-radius:12px;
+    padding:26px;
+    text-align:center;
+    color:var(--blue);
+    background:#fafbff;
+    cursor:pointer;
+    transition:.2s;
+}
+.upload-box.dragover{
+    border-color:var(--blue);
+    background:#e6f1ff;
+}
+.upload-box i{
+    font-size:32px;
+    margin-bottom:8px;
+}
+.upload-box p{
+    margin:4px 0 0;
+    font-size:13px;
+    color:#555;
+}
+#photoInput{
+    display:none;
+}
+.preview-container{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+.preview-item{
+    position:relative;
+}
+.preview-item img{
+    width:110px;
+    height:110px;
+    border-radius:10px;
+    object-fit:cover;
+    border:1px solid #ddd;
+}
+.preview-item button{
+    position:absolute;
+    top:-6px;
+    right:-6px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    border:none;
+    background:red;
+    color:#fff;
+    font-size:14px;
+    cursor:pointer;
+}
+
+/* TERMS */
+.terms-row{
+    margin-top:10px;
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    font-size:13px;
+}
+.terms-row input{
+    margin-top:3px;
+}
+
+/* =============== BUTTONS =============== */
+.button-row{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+}
+button{
+    font-family:'Poppins',sans-serif;
+}
+.btn-secondary,
+.btn-primary{
+    border:none;
+    border-radius:999px;
+    padding:10px 26px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+.btn-secondary{
+    background:#e6ecf5;
+    color:#333;
+}
+.btn-secondary:hover{
+    background:#d4dcec;
+}
+.btn-primary{
+    background:var(--blue);
+    color:#fff;
+}
+.btn-primary:hover{
+    background:#00244d;
+}
+.btn-cta{
+    background:var(--orange);
+    color:#fff;
+}
+.btn-cta:hover{
+    background:#e05500;
+}
+
+/* small helper text */
+.helper{
+    font-size:12px;
+    color:#8a8fa0;
+    margin-top:4px;
+}
+
+/* success message */
+#successMessage{
+    margin-top:15px;
+    font-size:14px;
+    color:#00b894;
+    display:none;
+    text-align:center;
+}
+
+/* mobile tweaks */
+@media(max-width:600px){
+    .form-card{
+        padding:22px 18px 20px;
+    }
+    .button-row{
+        flex-direction:column-reverse;
+        gap:10px;
+    }
+    .button-row button{
+        width:100%;
+    }
+    .stepper::before{
+        left:5%;
+        right:5%;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">VeloWorld</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="history.html">History</a>
+        <a href="contact.html">Contact</a>
+        <a href="add-product.html" class="active" style="color:#0066cc;">Sell Your Bike</a>
+    </nav>
+</header>
+
+<div class="sell-wrapper">
+    <h2 style="margin:0 0 18px;color:var(--blue);font-weight:600;">Sell Your Bike</h2>
+    <p style="margin:0 0 20px;font-size:14px;color:#555;">
+        Create a clear, professional listing in just a few guided steps.
+    </p>
+
+    <div class="form-card">
+        <!-- ======= STEPPER ======= -->
+        <div class="stepper" id="stepper">
+            <div class="step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-label">Bike Details</div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-label">Technical Specs</div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-label">Pricing & Location</div>
+            </div>
+            <div class="step" data-step="4">
+                <div class="step-number">4</div>
+                <div class="step-label">Photos & Finalize</div>
+            </div>
+        </div>
+
+        <!-- ======= FORM (all steps in one form) ======= -->
+        <form id="bikeForm">
+            <!-- ============ STEP 1 ============ -->
+            <div class="form-step active" data-step="1">
+                <div class="field-group">
+                    <label for="bikeType">Bike Type *</label>
+                    <select id="bikeType" required>
+                        <option value="">Select type</option>
+                        <option>Mountain</option>
+                        <option>Road</option>
+                        <option>Hybrid</option>
+                        <option>City</option>
+                        <option>Electric</option>
+                        <option>BMX</option>
+                        <option>Kids</option>
+                    </select>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="brand">Brand *</label>
+                        <input id="brand" type="text" placeholder="e.g. Trek, Giant, Specialized" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="model">Model *</label>
+                        <input id="model" type="text" placeholder="e.g. X-Caliber 8" required>
+                    </div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="year">Year *</label>
+                        <input id="year" type="number" min="1990" max="2100" placeholder="e.g. 2022" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="condition">Condition *</label>
+                        <select id="condition" required>
+                            <option value="">Select condition</option>
+                            <option>Brand New</option>
+                            <option>Like New</option>
+                            <option>Good</option>
+                            <option>Used</option>
+                            <option>Needs Repair</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="inline-checkbox">
+                    <input type="checkbox" id="firstOwner">
+                    <label for="firstOwner">I am the first owner</label>
+                </div>
+
+                <div class="button-row">
+                    <button type="button" class="btn-secondary" disabled>Back</button>
+                    <button type="button" class="btn-primary" data-next>Next</button>
+                </div>
+            </div>
+
+            <!-- ============ STEP 2 ============ -->
+            <div class="form-step" data-step="2">
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="frameMaterial">Frame Material *</label>
+                        <select id="frameMaterial" required>
+                            <option value="">Select material</option>
+                            <option>Aluminum</option>
+                            <option>Carbon</option>
+                            <option>Steel</option>
+                            <option>Titanium</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label for="wheelSize">Wheel Size *</label>
+                        <select id="wheelSize" required>
+                            <option value="">Select size</option>
+                            <option>26"</option>
+                            <option>27.5"</option>
+                            <option>29"</option>
+                            <option>700C</option>
+                            <option>20"</option>
+                            <option>24"</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="gears">Number of Gears *</label>
+                        <input id="gears" type="number" min="1" max="36" placeholder="e.g. 21" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="suspension">Suspension Type *</label>
+                        <select id="suspension" required>
+                            <option value="">Select suspension</option>
+                            <option>Rigid (No Suspension)</option>
+                            <option>Front Suspension</option>
+                            <option>Full Suspension</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="extraSpecs">Additional Specs</label>
+                    <textarea id="extraSpecs" placeholder="Upgrades, recent service, brakes type, tires, etc."></textarea>
+                </div>
+
+                <div class="button-row">
+                    <button type="button" class="btn-secondary" data-prev>Back</button>
+                    <button type="button" class="btn-primary" data-next>Next</button>
+                </div>
+            </div>
+
+            <!-- ============ STEP 3 ============ -->
+            <div class="form-step" data-step="3">
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="price">Asking Price *</label>
+                        <input id="price" type="number" min="1" placeholder="e.g. 950" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="currency">Currency *</label>
+                        <select id="currency" required>
+                            <option value="">Select</option>
+                            <option>AZN</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="city">City / Region *</label>
+                        <input id="city" type="text" placeholder="e.g. Baku" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="phone">Contact Number *</label>
+                        <input id="phone" type="tel" placeholder="+994 xx xxx xx xx" required>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="sellerName">Your Name (Seller) *</label>
+                    <input id="sellerName" type="text" placeholder="e.g. Miribrahim" required>
+                </div>
+
+                <div class="inline-checkbox">
+                    <input type="checkbox" id="deliveryAvailable">
+                    <label for="deliveryAvailable">Delivery available?</label>
+                </div>
+
+                <div class="button-row">
+                    <button type="button" class="btn-secondary" data-prev>Back</button>
+                    <button type="button" class="btn-primary" data-next>Next</button>
+                </div>
+            </div>
+
+            <!-- ============ STEP 4 ============ -->
+            <div class="form-step" data-step="4">
+                <div class="field-group">
+                    <label>Photos *</label>
+                    <!-- Drag & Drop / click area -->
+                    <div class="upload-box" id="uploadBox">
+                        <i class="fa-solid fa-camera"></i>
+                        <div>Drag & drop bike photos here</div>
+                        <p>or click to select images (up to 10)</p>
+                    </div>
+                    <input type="file" id="photoInput" accept="image/*" multiple>
+                    <div id="previewContainer" class="preview-container"></div>
+                    <div class="helper">Good quality photos get much more views.</div>
+                </div>
+
+                <div class="field-group">
+                    <label for="shortDesc">Short Description *</label>
+                    <textarea id="shortDesc" required
+                        placeholder="Summarize the bike: who it's for, condition, best features..."></textarea>
+                </div>
+
+                <div class="terms-row">
+                    <input type="checkbox" id="agreeTerms">
+                    <label for="agreeTerms">
+                        I confirm that the information provided is accurate and I agree to VeloWorld’s terms of use.
+                    </label>
+                </div>
+
+                <div class="button-row">
+                    <button type="button" class="btn-secondary" data-prev>Back</button>
+                    <button type="submit" class="btn-primary btn-cta">Submit Listing</button>
+                </div>
+
+                <div id="successMessage">Your listing was created successfully and will appear in the Shop.</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+/* ========= SIMPLE MULTI-STEP LOGIC ========= */
+const steps = Array.from(document.querySelectorAll(".form-step"));
+const stepIndicators = Array.from(document.querySelectorAll(".stepper .step"));
+let currentStep = 0;
+
+function showStep(index){
+    steps.forEach((step,i)=>{
+        step.classList.toggle("active", i===index);
+    });
+    stepIndicators.forEach((el,i)=>{
+        el.classList.toggle("active", i===index);
+        el.classList.toggle("completed", i<index);
+    });
+    currentStep = index;
+}
+
+document.querySelectorAll("[data-next]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        if(currentStep < steps.length-1){
+            showStep(currentStep+1);
+        }
+    });
+});
+
+document.querySelectorAll("[data-prev]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        if(currentStep > 0){
+            showStep(currentStep-1);
+        }
+    });
+});
+
+/* ========= IMAGE UPLOAD & PREVIEW ========= */
+const uploadBox = document.getElementById("uploadBox");
+const photoInput = document.getElementById("photoInput");
+const previewContainer = document.getElementById("previewContainer");
+let selectedFiles = [];       // File obyektləri
+let photoDataUrls = [];       // Base64 URL-lər (shop/product üçün saxlayacağıq)
+
+// open file dialog on click
+uploadBox.addEventListener("click", ()=> photoInput.click());
+
+// handle normal selection
+photoInput.addEventListener("change", (e)=> {
+    handleFiles(e.target.files);
+});
+
+// drag & drop
+["dragenter","dragover"].forEach(evt=>{
+    uploadBox.addEventListener(evt, (e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        uploadBox.classList.add("dragover");
+    });
+});
+["dragleave","drop"].forEach(evt=>{
+    uploadBox.addEventListener(evt, (e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        uploadBox.classList.remove("dragover");
+    });
+});
+uploadBox.addEventListener("drop", (e)=>{
+    const dtFiles = e.dataTransfer.files;
+    handleFiles(dtFiles);
+});
+
+function handleFiles(files){
+    const arr = Array.from(files);
+    arr.forEach(file=>{
+        if(!file.type.startsWith("image/")) return;
+        if(selectedFiles.length>=10) return; // max 10
+
+        selectedFiles.push(file);
+        const reader = new FileReader();
+        reader.onload = (ev)=>{
+            const dataUrl = ev.target.result;
+            photoDataUrls.push(dataUrl);
+
+            const box = document.createElement("div");
+            box.className = "preview-item";
+            const img = document.createElement("img");
+            img.src = dataUrl;
+            const rm = document.createElement("button");
+            rm.textContent = "×";
+            rm.addEventListener("click", ()=>{
+                const idxFile = selectedFiles.indexOf(file);
+                if(idxFile>-1) selectedFiles.splice(idxFile,1);
+
+                const idxUrl = photoDataUrls.indexOf(dataUrl);
+                if(idxUrl>-1) photoDataUrls.splice(idxUrl,1);
+
+                box.remove();
+            });
+            box.appendChild(img);
+            box.appendChild(rm);
+            previewContainer.appendChild(box);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+/* ========= SUBMIT (SAVE TO localStorage & GO TO SHOP) ========= */
+const form = document.getElementById("bikeForm");
+const successMessage = document.getElementById("successMessage");
+
+form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+
+    if(photoDataUrls.length === 0){
+        alert("Please add at least one photo of your bike.");
+        return;
+    }
+    if(!document.getElementById("agreeTerms").checked){
+        alert("You must agree to the terms to publish your listing.");
+        return;
+    }
+
+    // Form dəyərlərini götürək
+    const bikeType   = document.getElementById("bikeType").value;
+    const brand      = document.getElementById("brand").value.trim();
+    const model      = document.getElementById("model").value.trim();
+    const year       = document.getElementById("year").value.trim();
+    const condition  = document.getElementById("condition").value;
+    const frameMat   = document.getElementById("frameMaterial").value;
+    const wheelSize  = document.getElementById("wheelSize").value;
+    const gears      = document.getElementById("gears").value.trim();
+    const suspension = document.getElementById("suspension").value;
+    const extraSpecs = document.getElementById("extraSpecs").value.trim();
+    const priceVal   = document.getElementById("price").value.trim();
+    const currency   = document.getElementById("currency").value;
+    const city       = document.getElementById("city").value.trim();
+    const phone      = document.getElementById("phone").value.trim();
+    const sellerName = document.getElementById("sellerName").value.trim();
+    const shortDesc  = document.getElementById("shortDesc").value.trim();
+
+    // specs obyekti – product-data.js strukturuna uyğun
+    const specs = {
+        frame: frameMat,
+        wheelSize: wheelSize,
+        speeds: gears ? gears + " gears" : "",
+        suspension: suspension,
+        extra: extraSpecs
+    };
+
+    // shop.js və product.html üçün uyğun product obyekt
+    const newProduct = {
+        id: "user-" + Date.now(),          // STRING id (product.html-də strict comparison üçün)
+        userType: "user",                  // bizim elan
+        category: bikeType.toLowerCase(),  // filter üçün
+        name: brand + " " + model,         // kartın başlığı
+        desc: shortDesc,                   // açıqlama
+        price: priceVal + " " + currency,  // "950 AZN"
+        images: photoDataUrls,             // [dataUrl, ...]
+        specs: specs,                      // product.html → bike.specs
+        postedBy: sellerName,              // satıcı adı
+        phone: phone,                      // satıcı nömrə
+        city: city,
+        year: year,
+        condition: condition
+    };
+
+    // Mövcud userProducts-ları oxu və yenisini əlavə et
+    const existing = JSON.parse(localStorage.getItem("userProducts") || "[]");
+    existing.push(newProduct);
+    localStorage.setItem("userProducts", JSON.stringify(existing));
+
+    // istəsən mesaj da görə bilərsən, amma artıq shop-a yönləndiririk
+    // successMessage.style.display = "block";
+
+    // Shop səhifəsinə yönləndir
+    window.location.href = "shop.html";
+});
+</script>
+
+</body>
+</html>

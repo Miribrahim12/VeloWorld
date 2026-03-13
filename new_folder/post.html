@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post a Listing – VeloWorld</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .post-form {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .post-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .post-form input,
+        .post-form select,
+        .post-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        .post-form textarea {
+            resize: vertical;
+        }
+
+        .post-form button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            background: #1e88e5;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .post-form button:hover {
+            background: #156ac2;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">VeloWorld</div>
+    <nav>
+         <a href="index.html" >Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="history.html">History</a>
+        <a href="contact.html">Contact</a>
+        <a href="add-product.html" class="post-btn active">Sell Your Bike</a>
+    </nav>
+</header>
+
+
+<div class="post-form">
+
+    <h2>Post a New Listing</h2>
+
+    <label>Title</label>
+    <input type="text" id="title" placeholder="Example: Mountain Bike 29 inch">
+
+    <label>Price (AZN)</label>
+    <input type="number" id="price" placeholder="850">
+
+    <label>Phone Number</label>
+    <input type="text" id="phone" placeholder="+994501234567">
+
+    <label>Category</label>
+    <select id="category">
+        <option value="mountain">Mountain</option>
+        <option value="road">Road</option>
+        <option value="hybrid">Hybrid</option>
+        <option value="electric">Electric</option>
+        <option value="city">City</option>
+        <option value="kids">Kids</option>
+        <option value="retro">Retro</option>
+        <option value="bmx">BMX</option>
+    </select>
+
+    <label>Description</label>
+    <textarea id="desc" rows="5" placeholder="Describe the bicycle..."></textarea>
+
+    <label>Image URL (example: mybike.jpg)</label>
+    <input type="text" id="image" placeholder="image file name from images/ folder">
+
+    <button onclick="saveListing()">Publish Listing</button>
+
+</div>
+
+<script src="js/post.js"></script>
+
+</body>
+</html>

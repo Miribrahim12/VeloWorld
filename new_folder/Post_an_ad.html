@@ -1,0 +1,26 @@
+<h2>Post an ad</h2>
+
+<form id="addListingForm">
+    <input type="text" id="name" placeholder="Velosipedin adı" required>
+
+    <select id="category" required>
+        <option value="Mountain">Mountain</option>
+        <option value="Road">Road</option>
+        <option value="Hybrid">Hybrid</option>
+        <option value="City">City</option>
+        <option value="Electric">Electric</option>
+        <option value="Kids">Kids</option>
+        <option value="BMX">BMX</option>
+        <option value="Retro">Retro</option>
+    </select>
+
+    <input type="number" id="price" placeholder="Qiymət AZN" required>
+    <textarea id="desc" placeholder="Təsvir" required></textarea>
+
+    <label>Şəkillər</label>
+    <input type="file" id="images" multiple accept="image/*">
+
+    <input type="text" id="postedBy" placeholder="Adınız" required>
+
+    <button type="submit">Elanı əlavə et</button>
+</form>

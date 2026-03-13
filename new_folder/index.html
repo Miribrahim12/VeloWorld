@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VeloWorld – Bicycle Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL */
+body {
+    margin: 0;
+    background: #f5f7fb;
+    font-family: 'Roboto', sans-serif;
+}
+html, body { overflow-x: hidden !important; }
+
+/* HEADER */
+header {
+    width: 100%;
+    background: #ffffff;
+    padding: 18px 50px;
+    display: flex;
+    justify-content: flex-start; /* space-between → flex-start */
+    align-items: center;
+    gap: 60px; /* Logo ilə menu arası məsafə */
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    font-family: 'Poppins';
+    color: #0066cc;
+}
+
+/* 🔥 NAVIGATION – 40px sola çəkilmiş */
+nav {
+    margin-left: 720px; /* 🔥 Artıq işləyəcək */
+}
+
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Poppins';
+    color: #333;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+nav a:hover,
+nav a.active {
+    color: #00b894;
+}
+
+/* LAYOUT */
+.page-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr 240px;
+    padding: 20px;
+    gap: 25px;
+}
+
+/* AD BOXES */
+.ad-box {
+    background: #ffffff;
+    border-radius: 18px;
+    height: 380px;
+    padding: 20px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-box img {
+    width: 120px;
+    opacity: 0.85;
+    margin-bottom: 15px;
+}
+
+.ad-box h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'Poppins';
+}
+
+.ad-box p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(135deg, #0066cc, #00b894);
+    border-radius: 20px;
+    height: 60vh;
+    padding: 60px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 64px;
+    font-family: 'Poppins';
+    margin: 0;
+}
+
+.hero p {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.cta-btn {
+    margin-top: 30px;
+    padding: 16px 38px;
+    font-size: 20px;
+    font-family: 'Poppins';
+    text-decoration: none;
+    border-radius: 40px;
+    background: white;
+    color: #0066cc;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.cta-btn:hover {
+    background: #00b894;
+    color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px){
+    .page-layout {
+        grid-template-columns: 1fr;
+    }
+    .ad-box { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">VeloWorld</div>
+
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="history.html">History</a>
+        <a href="contact.html">Contact</a>
+        <a href="add-product.html" class="post-btn" style="color:#0066cc;">Sell Your Bike</a>
+    </nav>
+</header>
+
+<div class="page-layout">
+
+    <!-- LEFT AD -->
+    <div class="ad-box">
+        <h3>Advertisement</h3>
+        <img src="https://cdn-icons-png.flaticon.com/512/929/929610.png">
+        <p>Your Ad Here</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div>
+        <section class="hero">
+            <h1>Ride Your Freedom.<br>Live Sustainably.</h1>
+            <p>Choose a healthy and eco-friendly lifestyle today.</p>
+            <a href="shop.html" class="cta-btn">Browse Store</a>
+        </section>
+    </div>
+
+    <!-- RIGHT AD -->
+    <div class="ad-box">
+        <h3>Advertisement</h3>
+        <img src="https://cdn-icons-png.flaticon.com/512/929/929610.png">
+        <p>Your Ad Here</p>
+    </div>
+
+</div>
+
+</body>
+</html>
